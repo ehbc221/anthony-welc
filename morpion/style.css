@@ -1,0 +1,39 @@
+.box
+{
+    font-family: monospace;
+    font-size: 36px;
+
+    display: flex;
+
+    min-height: 100vh;
+
+    border: 5px solid #bada55;
+
+    justify-content: center;
+    align-items: center;
+}
+
+.morpion
+{
+    display: flex;
+
+    min-width: 50vh;
+    height: 50vh;
+
+    border: 5px solid #b000b5;
+
+    flex-wrap: wrap;
+}
+
+.case
+{
+    display: flex;
+
+    width: calc(1/3 * 100%);
+    height: calc(1/3 * 100%);
+
+    border: 5px solid #fb1;
+
+    justify-content: center;
+    align-items: center;
+}

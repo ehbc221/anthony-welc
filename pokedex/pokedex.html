@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Pokédex</title>
+	<link rel="icon" href="http://www.serebii.net/pokemongo/pokemon/025.png" />
+	<link href="https://fonts.googleapis.com/css?family=Bangers" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+
+	<!-- Formulaire de recherche et d'affichage des Pokémons -->
+	<form>
+		<h1>Pokédex !</h1>
+		<input type="text" name="search" placeholder="Poké Recherche" />
+		<ul></ul>
+	</form>
+
+	<!-- Script pour charger automatiquement les Pokémons -->
+	<script type="text/javascript">
+
+		// Chargement de la liste des Pokémons (sous format JSON) depuis GitHub
+		const pokedex = 'https://raw.githubusercontent.com/Biuni/PokemonGO-Pokedex/master/pokedex.json';
+
+		// Charger les Pokémons dans une constante
+		const pokemons = [];
+
+		// Remplir le tableau des Pokémons chargés depuis le JSON (cons pokedex)
+		fetch(pokedex)
+			.then(blob => blob.json())// Transformer les données brutes en JSON
+			.then(data => pokemons.push(...data.pokemon))// Mettre dans "pokemons" tous les Pokémons
+
+			// Trouver les Pokémons correspondant à la recherche
+			function trouverPokemon(recherche, pokemons) {
+				return pokemons.filter(pokemon => {// Retourner la rechercher dans les Pokémons
+					const regex = new RegExp(recherche, 'gi');// Type de recherche regex : g => global (rechercher partout), i => majuscule|minuscule
+					return pokemon.name.match(regex) || pokemon.type.find(type => type.match(regex));// Retourner les noms des Pokémons qui correspondent
+				});
+			}
+
+			// Afficher le résultat de la recherche
+			function afficherResultat() {
+				const tableauResultat = trouverPokemon(this.value, pokemons);// Le tableau de résultats cherche des Pokémons avec la valeur de la recherche, dans les Pokémons
+				const html = tableauResultat.map(pokemon => {
+					return `
+						<li>
+							<img src="${pokemon.img}" height="42" width="42">
+							<span>${pokemon.name}</span>
+							<span>${pokemon.height}</span>
+							<span>${pokemon.weight}</span>
+						</li>
+					`;
+				}).join('');// Boucler sur chacune des entrées de notre tableau de recherche , join => puisque celà retourne un tableau, enlever les virgules entre les lignes et joindre ces dernières
+				resultat.innerHTML = html;// Returner la recherche sous format HTML
+			}
+
+			const input = document.querySelector('input');// Zone de recherche
+			const resultat = document.querySelector('ul');// Zone où l'on va charger les Pokémons trouvés
+
+			input.addEventListener('change', afficherResultat);// Ecouter les résultats au changement
+			input.addEventListener('keyup', afficherResultat);// Ecouter les résultats au toucher du clavier
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+body,input
+{
+	font-family:monospace;
+}
+body
+{
+	background:#ECEFF1;
+	box-sizing:border-box;
+}
+*,:after,:before
+{
+	box-sizing:inherit
+}
+img,ul
+{
+	margin:0;
+	padding:0;
+}
+form
+{
+	max-width:750px;
+	margin:50px auto;
+}
+h1
+{
+	letter-spacing: -5px;
+	font-family: 'Bangers', cursive;
+	color:#ffcb05;
+	-webkit-text-stroke-width: 1px;
+	-webkit-text-stroke-color: #0071b9;
+	text-align: center;
+	font-size: 151px;margin:10px;
+}
+ul li
+{
+	background:#fff;
+	list-style:none;
+	font-size:24px;
+	padding:20px;
+	box-shadow:2px 0 10px rgba(0,0,0,.2);
+	display:flex;
+	justify-content:space-between;
+}
+input
+{
+	width:100%;
+	margin:0;
+	font-size:36px;
+	padding:10px;
+	color:#1d1d1d;
+	border:5px solid #0071b9;
+	border-width:0 0 5px;
+	outline:0;
+	box-shadow:0 5px 10px rgba(0,0,0,.2);
+}
